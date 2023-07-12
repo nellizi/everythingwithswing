@@ -1,11 +1,76 @@
 package everythingwithswing;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
 public class AppService {
+	
+	
 
 	public String[][] getList() {
 		// TODO Auto-generated method stub
-		return null;
+		
+		 String c_dir = "C:/";
+		 File mainDir = new File(c_dir);     //C 하위에 있는 모든 것 찾기-> 내 pc에 있는 모든 파일 찾기 
+		 String[] entireFileList = mainDir.list(); //.list() : 파일/디렉토리 명 
+		 
+		 String[] filenames = mainDir.list();		
+		
+		 String filename = mainDir.getName();
+		 
+		 String[] number = {"1","2","3","4"};
+		 String[] name = {"A","B","C","D"};
+		 String[] char_ = {"가","나","다","라"};
+		 String[] arr_ = {"a","b","c","d"};
+		 
+		 
+		 String[][] data = {{"1","A","가","a"},{"2","B","나","b"},{"3","C","다","c"}};
+		
+		 return data;
+//		 String[][] data =new String[arr_.length][4];
+//		 for(String arr : arr_) {
+//			 data
+//		 }
+//		 
+		 
+		
 	}
+	
+	
+	
+	public void searchFile() {
+		 List<String> fileLst = new ArrayList<String> ();
+			
+			scanDir("C:\\Users\\이지현\\Desktop\\everything", fileLst);
+			
+			for(String fullPath : fileLst) {
+				System.out.println(fullPath);
+			}		
+		}	
+		
+		
+		/**
+		 * 재귀 호출을 이용하여 하위 폴더를 탐색한다 
+		 * @param folderPath
+		 */
+		public static void scanDir(String folderPath, List<String> fileLst) {
+			File[] files = new File(folderPath).listFiles();
+			
+			for(File f : files) {
+				if(f.isDirectory()) {
+					scanDir(f.getAbsolutePath(), fileLst);
+				} else {
+					fileLst.add(f.getAbsolutePath());
+				}
+			}
+		 
+		 
+	}
+	
+	
+	
+	
 //	
 //	private PreparedStatement psmt;
 //	private Connection con;
