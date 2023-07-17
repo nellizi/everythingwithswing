@@ -1,4 +1,4 @@
-package everythingwithswing;
+package everythingwithswing.utils;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -8,23 +8,12 @@ public class AppService {
 
 	public String[][] getList() {
 		// TODO Auto-generated method stub
-
-//		String c_dir = "C:/";
-//		File mainDir = new File(c_dir); 			// C 하위에 있는 모든 것 찾기-> 내 pc에 있는 모든 파일 찾기
-//		String[] entireFileList = mainDir.list();   // .list() : 파일/디렉토리 명
-//		String[] filenames = mainDir.list();
-//		String filename = mainDir.getName();
-//		String[] number = { "1", "2", "3", "4" };
-//		String[] name = { "A", "B", "C", "D" };
-//		String[] char_ = { "가", "나", "다", "라" };
-//		String[] arr_ = { "a", "b", "c", "d" };
-
 		
 		/* 재귀호출로 하위 디렉토리에 있는 파일까지 다 구하기 */
 
 		List<String> fileList = new ArrayList<String>();
 
-		scanDir("C:\\Users\\이지현", fileList);
+		scanDir("C:\\logs", fileList);
 
 		String[][] data = new String[fileList.size()][4];
 
@@ -60,5 +49,7 @@ public class AppService {
 		}
 
 	}
+
+	
 
 }

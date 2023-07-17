@@ -1,11 +1,8 @@
-package everythingwithswing;
+package everythingwithswing.Frame;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -16,9 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.ListSelectionModel;
 import javax.swing.RowFilter;
 import javax.swing.ScrollPaneConstants;
 import javax.swing.SwingConstants;
@@ -29,59 +24,54 @@ import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
+import everythingwithswing.utils.AppService;
+
 public class Frame {
 
 	private JFrame frame;
 	private JTextField searchTextField;
 	private DefaultTableModel tableModel; // 테이블 데이터 편집하기 위해 필요
 	private JTable table;
-	private JTextField idLabel;
-	private JTextField telLabel;
-	private JTextField addresLabel;
-	private JTextField nameLabel;
-	private JTextField gradeLabel;
-	private JTextField idTextfield;
-	private JTextField telTextfield;
-	private JTextField gradeTextfield;
-	private JTextField nameTextfield;
-	private JTextField addressTextfield;
-	private JLabel lblNewLabel_1;
-	private JButton btnSave;
-	private JButton btnCancel;
 	private JPanel panelTop;
-	private JPanel panelBottom;
 	private JPanel tablePanel;
 	private AppService appService;
 	private String[][] data;
 
-	private JButton btnInsert;
-	private JButton btnDelete;
-	private JButton btnUpdate;
-
-	private int selectedIdx;
-
 	// Launch the application.
-	public static void main(String[] args) {
-
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Frame window = new Frame();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+//	public static void main(String[] args) {
+//
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					Frame window = new Frame();
+//					window.frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	}
 
 	// Create the application.
 	public Frame() {
+//		EventQueue.invokeLater(new Runnable() {
+//			public void run() {
+//				try {
+//					Frame window = new Frame();
+//					window.frame.setVisible(true);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//			}
+//		});
+//	
 		initialize();
 	}
 
 	// Initialize the contents of the frame.
 	private void initialize() {
+
+
 
 		appService = new AppService();
 
@@ -124,6 +114,8 @@ public class Frame {
 				trs.setRowFilter(RowFilter.regexFilter(val));
 			}
 		});
+		
+		frame.setVisible(true);
 
 		// 이벤트
 		showTable();
@@ -146,6 +138,7 @@ public class Frame {
 				return false;
 			}
 		};
+
 		table.setBounds(50, 50, 975, 255);
 
 		// 셀 값 가운데 정렬
