@@ -13,12 +13,9 @@ import javax.swing.WindowConstants;
 
 public class BasicFrame extends JFrame{
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
-	
+
 	public static void main(String[] args) {
 		new BasicFrame();
 	}
@@ -45,10 +42,11 @@ public class BasicFrame extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 new Frame(address.getText());
+                System.out.println(address.getText());
+                System.out.println(address.getText().isBlank());
                 setVisible(false); // 창 안보이게 하기 
             }
         });
 	}
-	
 	
 }

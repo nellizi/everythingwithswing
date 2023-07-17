@@ -2,10 +2,12 @@ package everythingwithswing.Frame;
 
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Image;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -24,6 +26,9 @@ import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
 import everythingwithswing.utils.AppService;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class Frame {
 
@@ -35,7 +40,8 @@ public class Frame {
 	private JPanel tablePanel;
 	private AppService appService;
 	private String[][] data;
-
+	
+	
 	// Launch the application.
 //	public static void main(String[] args) {
 //
@@ -70,8 +76,6 @@ public class Frame {
 	// Initialize the contents of the frame.
 	private void initialize(String address) {
 
-
-
 		appService = new AppService();
 
 		// 패널 배치
@@ -85,25 +89,38 @@ public class Frame {
 		panelTop = new JPanel();
 
 		// 상단 패널
-		panelTop.setBounds(6, 6, 1012, 713); // 패널 위치와 크기 -> (x, y, w, h)
+		panelTop.setBounds(6, 6, 990, 713); // 패널 위치와 크기 -> (x, y, w, h)
 		panelTop.setLayout(null); // 컴포넌트 레이아웃 -> Absolute
 		frame.getContentPane().add(panelTop);
 		panelTop.setVisible(true); // 패널 보이기
 
 		tablePanel = new JPanel(); // 테이블 패널 생성
-		tablePanel.setBounds(20, 50, 972, 650); // 테이블 패널 위치와 크기
+		tablePanel.setBounds(12, 50, 980, 650); // 테이블 패널 위치와 크기
 		frame.getContentPane().add(tablePanel); // 테이블 패널 추가
 
 		// 검색 필드
 		JButton btnSearch = new JButton("검색어 입력");
-		btnSearch.setBounds(22, 9, 104, 29);
+		btnSearch.setBounds(72, 17, 125, 29);
 		panelTop.add(btnSearch); // 상단 패널에 붙이기
 
 		///////////////// 검색
 		searchTextField = new JTextField(); // 검색어 입력 텍스트필드 생성
-		searchTextField.setBounds(138, 9, 837, 30);
+		searchTextField.setBounds(209, 17, 749, 30);
 		searchTextField.setColumns(10); // 검색어 길이 설정
 		panelTop.add(searchTextField); // 상단 패널에 붙이기
+		
+
+		JButton btnSearch_1 = new JButton(new ImageIcon(Frame.class.getResource("/image/home.png")));
+		btnSearch_1.setBackground(new Color(255, 255, 255));
+		btnSearch_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				   frame.setVisible(false); 
+				   new BasicFrame();
+			}
+		});
+		
+		btnSearch_1.setBounds(25, 17, 30, 30);
+		panelTop.add(btnSearch_1);
 
 		searchTextField.addKeyListener(new KeyAdapter() { // 검색어 입력 텍스트필드 이벤트
 			public void keyReleased(KeyEvent e) {
@@ -170,5 +187,6 @@ public class Frame {
 		tablePanel.add(scrollPane); // JScrollPane을 panelTop에 바로 올리면 안 보임. 전용 tablePanel에 올려야 보임
 
 	}
+	
 
 }

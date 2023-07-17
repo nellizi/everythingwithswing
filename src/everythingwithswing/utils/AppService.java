@@ -12,7 +12,14 @@ public class AppService {
 		/* 재귀호출로 하위 디렉토리에 있는 파일까지 다 구하기 */
 
 		List<String> fileList = new ArrayList<String>();
+		
+		String basic_address = "C:\\";
 
+		if(address.isBlank()) {
+			address = basic_address;
+			
+		}
+		System.out.println(basic_address);
 		scanDir(address, fileList);
 
 		String[][] data = new String[fileList.size()][4];
