@@ -6,14 +6,14 @@ import java.util.List;
 
 public class AppService {
 
-	public String[][] getList() {
+	public String[][] getList(String address) {
 		// TODO Auto-generated method stub
 		
 		/* 재귀호출로 하위 디렉토리에 있는 파일까지 다 구하기 */
 
 		List<String> fileList = new ArrayList<String>();
 
-		scanDir("C:\\logs", fileList);
+		scanDir(address, fileList);
 
 		String[][] data = new String[fileList.size()][4];
 

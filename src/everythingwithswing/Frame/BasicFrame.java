@@ -8,6 +8,7 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 
 public class BasicFrame extends JFrame{
@@ -25,6 +26,8 @@ public class BasicFrame extends JFrame{
 	public BasicFrame() {
 		super("창1"); //타이틀
         JPanel jPanel = new JPanel();
+        JTextField address=new JTextField(20);
+        jPanel.add(address);
         JButton btn1 = new JButton("창 2");
         setSize(300, 200); //창 크기 설정
         jPanel.add(btn1);
@@ -41,7 +44,7 @@ public class BasicFrame extends JFrame{
         btn1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                new Frame();
+                new Frame(address.getText());
                 setVisible(false); // 창 안보이게 하기 
             }
         });

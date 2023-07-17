@@ -1,7 +1,6 @@
 package everythingwithswing.Frame;
 
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
@@ -53,7 +52,7 @@ public class Frame {
 //	}
 
 	// Create the application.
-	public Frame() {
+	public Frame(String address) {
 //		EventQueue.invokeLater(new Runnable() {
 //			public void run() {
 //				try {
@@ -65,11 +64,11 @@ public class Frame {
 //			}
 //		});
 //	
-		initialize();
+		initialize(address);
 	}
 
 	// Initialize the contents of the frame.
-	private void initialize() {
+	private void initialize(String address) {
 
 
 
@@ -96,13 +95,13 @@ public class Frame {
 		frame.getContentPane().add(tablePanel); // 테이블 패널 추가
 
 		// 검색 필드
-		JButton btnSearch = new JButton("검색");
-		btnSearch.setBounds(881, 9, 100, 29);
+		JButton btnSearch = new JButton("검색어 입력");
+		btnSearch.setBounds(22, 9, 104, 29);
 		panelTop.add(btnSearch); // 상단 패널에 붙이기
 
 		///////////////// 검색
 		searchTextField = new JTextField(); // 검색어 입력 텍스트필드 생성
-		searchTextField.setBounds(12, 9, 857, 30);
+		searchTextField.setBounds(138, 9, 837, 30);
 		searchTextField.setColumns(10); // 검색어 길이 설정
 		panelTop.add(searchTextField); // 상단 패널에 붙이기
 
@@ -118,16 +117,15 @@ public class Frame {
 		frame.setVisible(true);
 
 		// 이벤트
-		showTable();
+		showTable(address);
 
 	}
 
 	/** UI테이블 설정 */
 
-	public void showTable() {
-		data = appService.getList();
-
-		String[][] row = new String[][] { { "394116", "이지현", "123", "123" } };
+	public void showTable(String address) {
+	
+		data = appService.getList(address);
 
 		String[] header = new String[] { "이름", "경로", "크기", "수정한 날짜" };
 
