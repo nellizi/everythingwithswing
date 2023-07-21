@@ -2,7 +2,6 @@ package everythingwithswing.Frame;
 
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Image;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -24,8 +23,8 @@ import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
+import everythingwithswing.utils.FileService;
 
-import everythingwithswing.utils.AppService;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.Color;
@@ -38,45 +37,21 @@ public class Frame {
 	private JTable table;
 	private JPanel panelTop;
 	private JPanel tablePanel;
-	private AppService appService;
+	private FileService fileService;
 	private String[][] data;
 	
 	
-	// Launch the application.
-//	public static void main(String[] args) {
-//
-//		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					Frame window = new Frame();
-//					window.frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	}
-
 	// Create the application.
 	public Frame(String address) {
 //		EventQueue.invokeLater(new Runnable() {
-//			public void run() {
-//				try {
-//					Frame window = new Frame();
-//					window.frame.setVisible(true);
-//				} catch (Exception e) {
-//					e.printStackTrace();
-//				}
-//			}
-//		});
-//	
+
 		initialize(address);
 	}
 
 	// Initialize the contents of the frame.
 	private void initialize(String address) {
 
-		appService = new AppService();
+		fileService = new FileService();
 
 		// 패널 배치
 		frame = new JFrame("EveryThing_By_Liz"); // 메인 프레임
@@ -93,19 +68,22 @@ public class Frame {
 		panelTop.setLayout(null); // 컴포넌트 레이아웃 -> Absolute
 		frame.getContentPane().add(panelTop);
 		panelTop.setVisible(true); // 패널 보이기
+		
+		JTextField addressField=new JTextField(20);
+		frame.getContentPane().add(addressField);
 
 		tablePanel = new JPanel(); // 테이블 패널 생성
-		tablePanel.setBounds(12, 50, 980, 650); // 테이블 패널 위치와 크기
+		tablePanel.setBounds(12, 171, 980, 529); // 테이블 패널 위치와 크기
 		frame.getContentPane().add(tablePanel); // 테이블 패널 추가
 
 		// 검색 필드
 		JButton btnSearch = new JButton("검색어 입력");
-		btnSearch.setBounds(72, 17, 125, 29);
+		btnSearch.setBounds(67, 114, 125, 29);
 		panelTop.add(btnSearch); // 상단 패널에 붙이기
 
 		///////////////// 검색
 		searchTextField = new JTextField(); // 검색어 입력 텍스트필드 생성
-		searchTextField.setBounds(209, 17, 749, 30);
+		searchTextField.setBounds(204, 114, 749, 30);
 		searchTextField.setColumns(10); // 검색어 길이 설정
 		panelTop.add(searchTextField); // 상단 패널에 붙이기
 		
@@ -142,7 +120,7 @@ public class Frame {
 
 	public void showTable(String address) {
 	
-		data = appService.getList(address);
+		data = fileService.getList(address);
 
 		String[] header = new String[] { "이름", "경로", "크기", "수정한 날짜" };
 
