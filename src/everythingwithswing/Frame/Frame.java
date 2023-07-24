@@ -39,6 +39,7 @@ public class Frame {
 	private JPanel tablePanel;
 	private FileService fileService;
 	private String[][] data;
+	private JTextField textField;
 	
 	
 	// Create the application.
@@ -62,28 +63,32 @@ public class Frame {
 		frame.getContentPane().setLayout(null); // 프레임에 추가되는 컴포넌트 레이아웃 -> Absolute
 
 		panelTop = new JPanel();
-
+		
+		
 		// 상단 패널
 		panelTop.setBounds(6, 6, 990, 713); // 패널 위치와 크기 -> (x, y, w, h)
 		panelTop.setLayout(null); // 컴포넌트 레이아웃 -> Absolute
 		frame.getContentPane().add(panelTop);
 		panelTop.setVisible(true); // 패널 보이기
 		
-		JTextField addressField=new JTextField(20);
-		frame.getContentPane().add(addressField);
 
 		tablePanel = new JPanel(); // 테이블 패널 생성
 		tablePanel.setBounds(12, 171, 980, 529); // 테이블 패널 위치와 크기
 		frame.getContentPane().add(tablePanel); // 테이블 패널 추가
 
 		// 검색 필드
-		JButton btnSearch = new JButton("검색어 입력");
-		btnSearch.setBounds(67, 114, 125, 29);
-		panelTop.add(btnSearch); // 상단 패널에 붙이기
+		JButton addressBtn = new JButton("폴더명 입력");
+		addressBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				tablePanel.setVisible(true);			}
+		});
+		
+		addressBtn.setBounds(828, 49, 125, 29);
+		panelTop.add(addressBtn); // 상단 패널에 붙이기
 
 		///////////////// 검색
 		searchTextField = new JTextField(); // 검색어 입력 텍스트필드 생성
-		searchTextField.setBounds(204, 114, 749, 30);
+		searchTextField.setBounds(65, 114, 749, 30);
 		searchTextField.setColumns(10); // 검색어 길이 설정
 		panelTop.add(searchTextField); // 상단 패널에 붙이기
 		
@@ -99,6 +104,15 @@ public class Frame {
 		
 		btnSearch_1.setBounds(25, 17, 30, 30);
 		panelTop.add(btnSearch_1);
+		
+		textField = new JTextField();
+		textField.setColumns(10);
+		textField.setBounds(65, 49, 749, 30);
+		panelTop.add(textField);
+		
+		JButton btnSearch_2 = new JButton("검색어 입력");
+		btnSearch_2.setBounds(828, 114, 125, 29);
+		panelTop.add(btnSearch_2);
 
 		searchTextField.addKeyListener(new KeyAdapter() { // 검색어 입력 텍스트필드 이벤트
 			public void keyReleased(KeyEvent e) {
@@ -165,6 +179,4 @@ public class Frame {
 		tablePanel.add(scrollPane); // JScrollPane을 panelTop에 바로 올리면 안 보임. 전용 tablePanel에 올려야 보임
 
 	}
-	
-
 }
